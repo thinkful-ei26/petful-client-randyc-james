@@ -22,7 +22,7 @@ export default function catReducer(state=initialState, action){
     })
   }
   else if(action.type=== FETCH_CAT_SUCCESS){
-
+ 
     return Object.assign({},state,{
       catsList: [...action.data],
       loading: false

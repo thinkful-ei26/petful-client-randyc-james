@@ -1,3 +1,4 @@
+import {API_BASE_URL} from '../config';
 //cat actions so get and delete
 //calls to our server
 
@@ -28,19 +29,29 @@ export const fetchCatError = error =>({
 //the async action here:
 export const fetchCat = user => dispatch =>{
     dispatch(fetchCatRequest());
-    fetch(`/api/cats`, {
+    console.log('request!');
+
+    fetch(`${API_BASE_URL}/api/cats`, {
         method: 'GET',
         // no body
     })
-    //.then(badData=>{
-    //    badData.json()
-   // })
-    .then(goodData=>dispatch(fetchCatSuccess(goodData)))
-    .catch(err=>dispatch(fetchCatError(err)));
+    .then(badData=>badData.json())
+    .then(goodData=>{
+
+        console.log('hello data',goodData);
+        dispatch(fetchCatSuccess(goodData));
+    
+    })
+    .catch(err=>{
+        
+        console.log('hello error',err);
+        dispatch(fetchCatError(err));
+        
+    });
 };
 export const removeCat = user => dispatch =>{
     dispatch(fetchCatRequest());
-    fetch(`/api/cats`, {
+    fetch(`${API_BASE_URL}/api/cats`, {
         method: 'DELETE',
     })
     //.then(badData=>{

@@ -1,5 +1,6 @@
 //dog actions so get and delete
 //calls to our server
+import {API_BASE_URL} from '../config';
 
 //the sync actions here:
 export const FETCH_DOG_REQUEST = 'FETCH_DOG_REQUEST';
@@ -25,20 +26,35 @@ export const fetchDogError = error =>({
 })
 //the async action here:
 export const fetchDog = user => dispatch =>{
+
+
     dispatch(fetchDogRequest());
-    fetch(`/api/dogs`, {
+    console.log('hello dog');
+    fetch(`${API_BASE_URL}/api/dogs`, {
         method: 'GET',
         // no body
     })
-    //.then(badData=>{
-    //    badData.json()
-   // })
-    .then(goodData=>dispatch(removeDogSuccess(goodData)))
-    .catch(err=>dispatch(fetchDogError(err)));
+    .then(badData=>{
+        
+        console.log('hello dog',badData);
+
+        return badData.json();
+    }
+        
+        )
+    .then(goodData=>{
+        console.log('hello dog data',goodData);
+        dispatch(fetchDogSuccess(goodData));}
+        )
+    .catch(err=>{
+        console.log('hello dog error',err);
+        dispatch(fetchDogError(err))
+    
+    });
 };
 export const removeDog = user => dispatch =>{
     dispatch(fetchDogRequest());
-    fetch(`/api/dogs`, {
+    fetch(`${API_BASE_URL}/api/dogs`, {
         method: 'DELETE',
     })
     //.then(badData=>{

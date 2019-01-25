@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import {Pet} from './Pet';
 import { connect } from 'react-redux';
+import {fetchCat} from '../actions/Cat';
+import {fetchDog} from '../actions/Dog';
 
 class Dashboard extends Component {
 
-    
+    componentWillMount(){
+       // Promise.all([
+            this.props.dispatch(fetchCat());
+            this.props.dispatch(fetchDog());
+       // ]);        
+    }    
 
     render(){
         return (<div>
@@ -14,6 +21,7 @@ class Dashboard extends Component {
     }
 
     adoptClick(e){
+
         console.log("button has been clicked!");
     }    
 

@@ -57,9 +57,7 @@ export const removeDog = user => dispatch =>{
     fetch(`${API_BASE_URL}/api/dogs`, {
         method: 'DELETE',
     })
-    //.then(badData=>{
-    //    badData.json()
-   // })
+    .then(badData=>badData.json())
     .then(goodData=>dispatch(removeDogSuccess(goodData)))
     .catch(err=>dispatch(fetchDogError(err)));
 };

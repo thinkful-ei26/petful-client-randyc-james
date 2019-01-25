@@ -54,9 +54,7 @@ export const removeCat = user => dispatch =>{
     fetch(`${API_BASE_URL}/api/cats`, {
         method: 'DELETE',
     })
-    //.then(badData=>{
-    //    badData.json()
-   // })
+    .then(badData=>badData.json())
     .then(goodData=>dispatch(removeCatSuccess(goodData)))
     .catch(err=>dispatch(fetchCatError(err)));
 };

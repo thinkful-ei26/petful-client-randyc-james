@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Pet} from './Pet';
 import { connect } from 'react-redux';
-import {fetchCat} from '../actions/Cat';
-import {fetchDog} from '../actions/Dog';
+import {fetchCat,removeCat} from '../actions/Cat';
+import {fetchDog,removeDog} from '../actions/Dog';
 
 class Dashboard extends Component {
 
@@ -14,21 +14,41 @@ class Dashboard extends Component {
     }    
 
     render(){
+
+        let displayCat = <Pet pet={this.props.cat[0]} handleClick={(e)=>{this.adoptCat(e)}}/>;
+        
+        if(this.props.cat[0] === undefined){
+            displayCat = (<div>No More Cats Available...</div>);
+        } 
+
+        let displayDog = <Pet pet={this.props.dog[0]} handleClick={(e)=>{this.adoptDog(e)}}/>;
+        
+        if(this.props.dog[0] === undefined){
+            displayDog = (<div>No More Dogs Available...</div>);
+        } 
+
+
         return (<div>
-            <Pet pet={this.props.cat} handleClick={(e)=>{this.adoptClick(e)}}/>
-            <Pet pet={this.props.dog} handleClick={(e)=>{this.adoptClick(e)}}/>
+            {displayCat}
+            {displayDog}
             </div>);
     }
 
-    adoptClick(e){
+    adoptCat(e){
+        this.props.dispatch(removeCat());
 
-        console.log("button has been clicked!");
-    }    
+        //console.log("button has been clicked!");
+    } 
+    
+    adoptDog(e){
+        this.props.dispatch(removeDog());
+        //console.log("button has been clicked!");
+    } 
 
 }
 const mapStateToProps = state => ({
-    cat: state.cat.catsList[0],
-    dog: state.dog.dogsList[0]
+    cat: state.cat.catsList,
+    dog: state.dog.dogsList
 });
 export default connect(mapStateToProps)(Dashboard)
 

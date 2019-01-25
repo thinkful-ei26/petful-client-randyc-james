@@ -17,12 +17,14 @@ class Dashboard extends Component {
 
         let displayCat = <Pet pet={this.props.cat[0]} handleClick={(e)=>{this.adoptCat(e)}}/>;
         
+        //with Queue this works with null
         if(this.props.cat[0] === null){
             displayCat = (<div>No More Cats Available...</div>);
         } 
 
         let displayDog = <Pet pet={this.props.dog[0]} handleClick={(e)=>{this.adoptDog(e)}}/>;
         
+        //with Queue this works with null
         if(this.props.dog[0] === null){
             displayDog = (<div>No More Dogs Available...</div>);
         } 

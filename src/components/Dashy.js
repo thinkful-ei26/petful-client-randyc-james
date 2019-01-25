@@ -17,13 +17,13 @@ class Dashboard extends Component {
 
         let displayCat = <Pet pet={this.props.cat[0]} handleClick={(e)=>{this.adoptCat(e)}}/>;
         
-        if(this.props.cat[0] === undefined){
+        if(this.props.cat[0] === null){
             displayCat = (<div>No More Cats Available...</div>);
         } 
 
         let displayDog = <Pet pet={this.props.dog[0]} handleClick={(e)=>{this.adoptDog(e)}}/>;
         
-        if(this.props.dog[0] === undefined){
+        if(this.props.dog[0] === null){
             displayDog = (<div>No More Dogs Available...</div>);
         } 
 

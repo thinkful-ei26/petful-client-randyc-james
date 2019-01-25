@@ -24,14 +24,19 @@ export default function dogReducer(state=initialState, action){
   else if(action.type=== FETCH_DOG_SUCCESS){
 
     return Object.assign({},state,{
-      dogsList: [...action.data],
+      dogsList: [action.data],
       loading: false
     })
+
+    // return Object.assign({},state,{
+    //   dogsList: [...action.data],
+    //   loading: false
+    // })
 
   }
   else if(action.type=== REMOVE_DOG_SUCCESS){
     return Object.assign({}, state, {
-        dogsList : [...action.data],
+        dogsList : [action.data],
         loading: false
     });
   }
